@@ -37,20 +37,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Thread thread = new Thread(new Runnable() {
-                    boolean encendido = true;
+                    int color = 1;
                     @Override
                     public void run() {
                         while(true){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    if (encendido){
-                                        imgFoco1.setImageResource(R.drawable.luz_roja);
-                                        encendido = false;
-                                    }else{
-                                        imgFoco1.setImageResource(R.drawable.foco);
-                                        encendido = true;
-                                    }
+                                    switch (color)
+                                        {
+                                        case 1:
+                                            imgFoco1.setImageResource(R.drawable.luz_roja);
+                                            color = 2;
+                                            break;
+                                        case 2:
+                                            imgFoco1.setImageResource(R.drawable.luz_amarilla);
+                                            color = 3;
+                                            break;
+                                            case 3:
+                                            imgFoco1.setImageResource(R.drawable.luz_verde);
+                                            color = 1;
+                                            break;
+                                        }
                                 }
                             });
                             try {
