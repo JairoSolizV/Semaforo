@@ -1,6 +1,11 @@
 package com.example.semaforo;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
+    Button btnActivar;
+    ImageView imgFoco1;
+    View mainLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +27,43 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnActivar = findViewById(R.id.btnActivar);
+        imgFoco1 = findViewById(R.id.imgFoco1);
+        mainLayout = findViewById(R.id.main);
+
+
+        btnActivar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Thread thread = new Thread(new Runnable() {
+                    boolean encendido = true;
+                    @Override
+                    public void run() {
+                        while(true){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (encendido){
+                                        imgFoco1.setImageResource(R.drawable.luz_roja);
+                                        encendido = false;
+                                    }else{
+                                        imgFoco1.setImageResource(R.drawable.foco);
+                                        encendido = true;
+                                    }
+                                }
+                            });
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+                thread.start();
+            }
+        });
+
     }
 }
