@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     Button btnActivar;
-    ImageView imgFoco1, imgFoco2;
+    ImageView imgRojo, imgAmarillo, imgVerde;
     View mainLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,37 +29,56 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnActivar = findViewById(R.id.btnActivar);
-        imgFoco1 = findViewById(R.id.imgFoco1);
-        imgFoco2 = findViewById(R.id.imgFoco2);
+        imgRojo = findViewById(R.id.imgRojo);
+        imgAmarillo = findViewById(R.id.imgAmarillo);
+        imgVerde = findViewById(R.id.imgVerde);
         mainLayout = findViewById(R.id.main);
 
 
         btnActivar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Thread threadFocoArriba = new Thread(new Runnable() {
-                    int color = 1;
+                Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        while(true){
+                        while (true) {
+                            // ROJO
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    switch (color)
-                                        {
-                                        case 1:
-                                            imgFoco1.setImageResource(R.drawable.luz_roja);
-                                            color = 2;
-                                            break;
-                                        case 2:
-                                            imgFoco1.setImageResource(R.drawable.luz_amarilla);
-                                            color = 3;
-                                            break;
-                                        case 3:
-                                            imgFoco1.setImageResource(R.drawable.luz_verde);
-                                            color = 1;
-                                            break;
-                                        }
+                                    imgRojo.setImageResource(R.drawable.luz_roja);
+                                    imgAmarillo.setImageResource(R.drawable.foco);
+                                    imgVerde.setImageResource(R.drawable.foco);
+                                }
+                            });
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            // AMARILLO
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imgRojo.setImageResource(R.drawable.foco);
+                                    imgAmarillo.setImageResource(R.drawable.luz_amarilla);
+                                    imgVerde.setImageResource(R.drawable.foco);
+                                }
+                            });
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            // VERDE
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imgRojo.setImageResource(R.drawable.foco);
+                                    imgAmarillo.setImageResource(R.drawable.foco);
+                                    imgVerde.setImageResource(R.drawable.luz_verde);
                                 }
                             });
                             try {
@@ -70,40 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-                threadFocoArriba.start();
-                Thread threadFocoAbajo = new Thread(new Runnable() {
-                    int color = 1;
-                    @Override
-                    public void run() {
-                        while(true){
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    switch (color) {
-                                        case 1:
-                                            imgFoco2.setImageResource(R.drawable.luz_verde);
-                                            color = 2;
-                                            break;
-                                        case 2:
-                                            imgFoco2.setImageResource(R.drawable.luz_amarilla);
-                                            color = 3;
-                                            break;
-                                        case 3:
-                                            imgFoco2.setImageResource(R.drawable.luz_roja);
-                                            color = 1;
-                                            break;
-                                    }
-                                }
-                            });
-                            try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException e){
-                                    e.printStackTrace();
-                                }
-                            }
-                        }
-                });
-                threadFocoAbajo.start();
+                thread.start();
             }
         });
 
