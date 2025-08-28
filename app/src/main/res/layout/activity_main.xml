@@ -20,35 +20,73 @@
         android:gravity="center"
         android:textColor="@color/white"/>
 
-    <ImageView
-        android:id="@+id/imgRojo"
-        android:layout_width="67dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="80dp"
+    <LinearLayout
+        android:layout_width="82dp"
+        android:layout_height="254dp"
+        android:layout_marginTop="84dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/foco" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imgAmarillo"
-        android:layout_width="67dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="152dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/foco" />
+        <ImageView
+            android:id="@+id/imgRojo1"
+            android:layout_width="67dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="7dp"
+            app:srcCompat="@drawable/foco" />
 
-    <ImageView
-        android:id="@+id/imgVerde"
-        android:layout_width="67dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="224dp"
+        <ImageView
+            android:id="@+id/imgAmarillo1"
+            android:layout_width="67dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/foco" />
+
+        <ImageView
+            android:id="@+id/imgVerde1"
+            android:layout_width="67dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/foco" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="82dp"
+        android:layout_height="254dp"
+        android:layout_marginTop="88dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/foco" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgRojo2"
+            android:layout_width="67dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="7dp"
+            app:srcCompat="@drawable/foco" />
+
+        <ImageView
+            android:id="@+id/imgAmarillo2"
+            android:layout_width="67dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/foco" />
+
+        <ImageView
+            android:id="@+id/imgVerde2"
+            android:layout_width="67dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/foco" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnActivar"
